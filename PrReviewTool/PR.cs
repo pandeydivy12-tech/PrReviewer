@@ -10,7 +10,7 @@ namespace RelinkMCP.PrReviewTool;
 public static class PrTools
 {
 
-    [McpServerTool,Description("Retrieves the changes of PR request for git")]
+    [McpServerTool, Description("Retrieves the changes of PR request for git")]
     public static PRDiff RetrivePrChanges(
         [Description("The main branch where the git PR has to be merged into")]
         string DestinationBranch,
@@ -20,18 +20,18 @@ public static class PrTools
         try
         {
             InputOutput.Log("PR reviewer getting used");
-            if(!ScriptRunner.IsGithubCliInstalled())
+            if (!ScriptRunner.IsGithubCliInstalled())
             {
                 InputOutput.Log("Not detected");
-                var pd = new PRDiff().SetTransactionStatus("github cli not detected on machine",false);
+                var pd = new PRDiff().SetTransactionStatus("github cli not detected on machine", false);
                 return pd;
             }
             InputOutput.Log("Detected");
             return new PRDiff().SetTransactionStatus("success", true);
         }
         catch (System.Exception ex)
-        {   
+        {
             return new PRDiff().SetTransactionStatus(ex.Message, false);
         }
-    } 
+    }
 }
